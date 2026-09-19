@@ -1,44 +1,68 @@
-# Unilever Distribution App
+produk_unilever = [
+    ["Lifebuoy","100 ml", "Personal Care", 150, 3500],
+    ["Sunsilk Shampoo", "100 ml" ,"Personal Care", 120, 15000],
+    ["Pepsodent Pasta Gigi", "15 gram","Personal Care", 100, 12000],
+    ["Rinso Deterjen","500 gram" ,"Home Care", 80, 18500],
+    ["Molto","100 ml", "Home Care", 60, 22000],
+    ["Sunlight","250 ml", "Home Care", 90, 14000],
+    ["Bango Kecap Manis","100 ml", "Food & Beverage", 70, 21000],
+    ["Royco Kaldu Ayam","20 gram","Food & Beverage", 110, 8500],
+    ["Wall's Cornetto", "10 gram", "Food & Beverage", 200, 10000],
+    ["Clear Shampoo","100 ml", "Personal Care", 50, 32000],
+]
+#urutan produk =[nama,ukuran/berat,kategori,stok,harga]
+# uruta produk = [0,          1,      2,      3,     4, ]
+#urutan produk = [0,              1,       2,      3,     4,    5,    6,    ]
+# Data Penjualan (k.Transaksi, outlet, wilayah, produk, ukuran, qty, subtotal)
+History_penjualan = [
+    ["a123879", "Indomaret Sudirman", "Jakarta", "Lifebuoy","100 ml", 20, 70000],
+    ["x234687", "Alfamart Kemang", "Jakarta", "Rinso Deterjen", "500 gram", 10, 185000],
+    ["y890755", "Toko Sinar Jaya", "Bandung", "Sunsilk Shampoo","100 ml", 15, 225000],
+    ["p098724", "Indomaret Dago", "Bandung", "Bango Kecap Manis","100 ml", 8, 168000],
+    ["q279278", "Alfamart Rungkut", "Surabaya", "Wall's Cornetto","10 gram",30, 300000],
+    ["w263742", "Toko Makmur", "Surabaya", "Pepsodent Pasta Gigi","15 gram", 12, 144000],
+    ["k982753", "Indomaret Sudirman", "Jakarta", "Molto","100 ml", 5, 110000],
+    ["c293728", "Toko Sinar Jaya", "Bandung", "Royco Kaldu Ayam","20 gram", 25, 212500],
+    ["k029374", "Alfamart Kemang", "Jakarta", "Sunlight","250 ml", 18, 252000],
+    ["m203839", "Toko Makmur", "Surabaya", "Clear Shampoo","100 ml", 6, 192000],
+]
 
-Aplikasi manajemen distribusi produk FMCG (Fast-Moving Consumer Goods) sederhana berbasis Python, dibuat sebagai capstone project. Aplikasi ini mensimulasikan sistem CRUD produk, transaksi penjualan ke outlet, riwayat transaksi, dan laporan analisis penjualan.
+cart=[]
+riwayat_penjualan=[]
 
-## 📋 Fitur
+def tampilkan_produk():
+   print('=' * 99)
+   print(f"{'Index':<7} | {'Nama':<20} | {'Ukuran':<20} | {'Kategori':<15} | {'Stok':<10} | {'Harga':<10}| ")
+   print('=' * 99)
+   for i in range(len(produk_unilever)):
+      print(f"{i}\t| {produk_unilever[i][0]:<20} | {produk_unilever[i][1]:<20} | {produk_unilever[i][2]:<15} | {produk_unilever[i][3]:<10} | {produk_unilever[i][4]:<10}| ")
+   print("=" * 99)
 
-1. **Lihat Semua Data Produk** — menampilkan daftar produk beserta stok dan harga
-2. **Tambah Data Produk Baru** — menambahkan produk baru dengan validasi duplikat
-3. **Update Data Produk** — mengubah ukuran, stok, atau harga produk
-4. **Hapus Data Produk** — menghapus produk dari katalog
-5. **Input Penjualan ke Outlet** — mencatat transaksi penjualan dan mengurangi stok otomatis
-6. **Lihat Riwayat Penjualan** — mencari riwayat transaksi berdasarkan kode transaksi
-7. **Laporan Penjualan** — menampilkan ringkasan total pendapatan, produk terlaris, dan wilayah dengan penjualan tertinggi
-
-## 🛠️ Teknologi
-
-- Python 3 (tanpa library eksternal — pure Python)
-
-## 🚀 Cara Menjalankan
-
-1. Pastikan Python 3 sudah terinstall di komputer kamu
-2. Masuk ke folder project dan jalankan:
-  Project_laela.py
-3. Ikuti instruksi menu yang muncul di terminal
-
-## 📊 Struktur Data
-
-**Produk:**
-```python
-[nama, ukuran, kategori, stok, harga]
-```
-
-**Riwayat Penjualan:**
-```python
-[kode_transaksi, outlet, wilayah, nama_produk, ukuran, qty, subtotal]
-```
-
-## 👤 Penulis
-
-Laela Mulyana
-
-## 📝 Catatan
-
-Project ini dibuat untuk keperluan belajar dan latihan pengembangan aplikasi CRUD sederhana menggunakan Python.
+while True:
+   Menu=input('''
+   Unilever Distribution Apps
+   1. Lihat Semua Data Produk
+   2. Tambah Data Produk Baru
+   3. Update Data Produk
+   4. Hapus Data Produk
+   5. Input Penjualan ke Outlet
+   6. Lihat Riwayat Penjualan
+   7. Laporan penjualan
+   0.Keluar
+   Masukkan Angka yang anda inginkan: ''')
+   # 1.menu read
+   if Menu == '1':
+      while True:
+         print('''
+            Display Data Menu
+            1. Lihat Semua Data
+            2. Cari Produk (by Nama)
+            3. Kembali ke Menu Utama
+            ''')
+         sub_menu = input('Pilih opsi: ')
+ 
+         if sub_menu == '1':
+            if len(produk_unilever) == 0:
+               print('Data tidak ada.')
+            else:
+               tampilkan_produk()
